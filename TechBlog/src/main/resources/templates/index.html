@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}"
+>
+
+<head>
+    <!-- Basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Site Metas -->
+    <title>Tech Blog - Stylish Magazine Blog Template</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- CSS -->
+    <style>
+        .blog-box {
+     margin-bottom: 20px; /* Bütün box-lar arasında eyni boşluğu təmin edir */
+ }
+
+ .blog-box .col-md-4,
+ .blog-box .col-md-8 {
+     padding: 10px; /* Daxili boşluq (isteğe bağlı) */
+ }
+
+ .post-media {
+     position: relative;
+ }
+
+ .hovereffect {
+     position: absolute;
+     top: 0;
+     left: 0;
+     right: 0;
+     bottom: 0;
+ }
+
+    </style>
+</head>
+
+<body>
+    <section layout:fragment="layout">
+            <section class="section first-section" >
+                <div class="container-fluid">
+                    <div class="masonry-blog clearfix">
+                        <div class="first-slot">
+                            <div class="masonry-box post-media">
+                                <a th:href="'/news/detail/'+${firstNews.id}">
+                                    <img th:src="${firstNews.photoUrl}" alt="" class="img-fluid" style="width: 788px; height: 443px; object-fit: cover;">
+                                </a>
+
+                                <div class="shadoweffect">
+                                    <div class="shadow-desc">
+                                        <div class="blog-meta">
+                                            <span th:text="${firstNews.category.name}" class="bg-orange">Gadgets</span>
+                                            <h4><a th:href="'/news/detail/'+${firstNews.id}" th:text="${firstNews.title}" title="">Do not make mistakes when choosing web hosting</a></h4>
+                                            <small><a th:href="'/news/author/detail/'+${firstNews.author.id}" th:text="${firstNews.author.author}" title="">by Jessica</a></small>
+                                        </div><!-- end meta -->
+                                    </div><!-- end shadow-desc -->
+                                </div><!-- end shadow -->
+                            </div><!-- end post-media -->
+                        </div><!-- end second-side -->
+
+                        <div class="second-slot" th:each="n : ${twoNews}">
+                            <div class="masonry-box post-media">
+                                <a th:href="'/news/detail/' + ${n.id}" style="display: inline-block;">
+                                    <img th:src="${n.photoUrl}" alt="News" class="img-fluid" style="width: 394px; height: 443px; object-fit: cover;">
+                                </a>
+
+
+
+                                <div class="shadoweffect">
+                                    <div class="shadow-desc">
+                                        <div class="blog-meta">
+                                            <span th:text="${n.category.name}" class="bg-orange">Gadgets</span>
+                                            <h4><a th:href="'/news/detail/'+${n.id}" th:text="${n.title}" title="">Do not make mistakes when choosing web hosting</a></h4>
+                                            <small><a th:href="'/news/author/detail/'+${n.author.id}" th:text="${n.author.author}" title="">by Jessica</a></small>
+                                        </div><!-- end meta -->
+                                    </div><!-- end shadow-desc -->
+                                </div><!-- end shadow -->
+                            </div><!-- end post-media -->
+                        </div><!-- end second-side -->
+
+                    </div><!-- end masonry -->
+                </div>
+            </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                        <div class="page-wrapper">
+                            <div class="blog-top clearfix">
+                                <h4 class="pull-left">Recent News<i class="fa fa-rss"></i></h4>
+                            </div><!-- end blog-top -->
+
+                            <hr class="invis">
+
+                            <div class="blog-list clearfix">
+                                <div class="blog-box row" th:each="news: ${news}">
+                                    <div class="col-md-4">
+                                        <div class="post-media">
+                                            <a th:href="'/news/detail/'+${news.id}">
+                                                <img th:src="${news.photoUrl}" class="img-fluid">
+                                                <div class="hovereffect"></div>
+                                            </a>
+                                        </div>
+                                    </div><!-- end col -->
+
+                                    <div class="blog-meta big-meta col-md-8">
+                                        <h4><a th:href="'/news/detail/'+${news.id}" th:text="${news.title}">Top 10 phone applications and 2017 mobile design awards</a></h4>
+                                        <p th:text="${news.editor1}">Aenean interdum arcu blandit, vehicula magna non, placerat elit...</p>
+                                        <small class="firstsmall"><a class="bg-orange" th:href="'/category/news/'+${news.category.id}" th:text="${news.category.name}">Category</a></small>
+                                        <small><a th:href="'/news/author/detail/'+${news.author.id}" th:text="${news.author.author}">by Matilda</a></small>
+                                        <small><a th:text="${news.views}"><i class="fa fa-eye"></i> 1114</a></small>
+
+                                    </div><!-- end meta -->
+                                </div><!-- end blog-box -->
+
+
+                            </div> <!-- end blog-list -->
+                        </div><!-- end page-wrapper -->
+
+                        <hr class="invis">
+
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <nav aria-label="Page navigation">
+                                    <ul class="pagination justify-content-start">
+                                        <!-- Page Numbers -->
+                                        <li class="page-item" th:each="i : ${#numbers.sequence(1,pageCount)}">
+                                            <a class="page-link" th:text="${i}" th:href="'?pageNumber='+${i}"></a>
+                                        </li>
+                                    </ul>
+                                </nav>
+
+                            </div><!-- end col -->
+                        </div><!-- end row -->
+                    </div><!-- end col -->
+
+
+                    <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+                            <div class="sidebar">
+                                <div class="widget">
+                                    <h2 class="widget-title">Follow Us</h2>
+
+                                    <div class="row text-center">
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                            <a href="#" class="social-button facebook-button">
+                                                <i class="fa fa-facebook"></i>
+                                                <p>27k</p>
+                                            </a>
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                            <a href="#" class="social-button twitter-button">
+                                                <i class="fa fa-twitter"></i>
+                                                <p>98k</p>
+                                            </a>
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                            <a href="#" class="social-button google-button">
+                                                <i class="fa fa-google-plus"></i>
+                                                <p>17k</p>
+                                            </a>
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                            <a href="#" class="social-button youtube-button">
+                                                <i class="fa fa-youtube"></i>
+                                                <p>22k</p>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div><!-- end widget -->
+
+                                <div class="widget">
+                                    <div class="banner-spot clearfix">
+                                        <div class="banner-img">
+                                            <img src="/images/adv.jpg" alt="" class="img-fluid" style="width: 300px; height: 600px; object-fit: cover;">
+                                        </div><!-- end banner-img -->
+                                    </div><!-- end banner -->
+                                </div><!-- end widget -->
+
+                                <div class="widget">
+                                    <h2 class="widget-title">Trend Videos</h2>
+                                    <div class="trend-videos">
+                                        <div class="blog-box" th:each="trendVideo : ${trendVideos}">
+                                            <div class="post-media">
+                                                <a th:href="${trendVideo.videoUrl}" title="">
+                                                    <video th:src="${trendVideo.videoUrl}" alt="" class="img-fluid"></video>
+                                                    <div class="hovereffect">
+                                                        <span class="videohover"></span>
+                                                    </div><!-- end hover -->
+                                                </a>
+                                            </div><!-- end media -->
+                                            <div class="blog-meta" style="text-align: center;">
+                                                <h4 style="margin: 0;">
+                                                    <a th:href="'/videos/detail/'+${trendVideo.id}" th:text="${trendVideo.title}" title="">We prepared the best 10 laptop presentations for you</a>
+                                                </h4>
+                                                <div style="text-align: center;">
+                                                    <small>
+                                                        <a th:href="'/videos/author/detail/'+${trendVideo.author.id}" th:text="${trendVideo.author.author}"></a>
+                                                    </small>
+                                                    <small th:text="${trendVideo.views}"></small>
+                                                </div>
+                                            </div><!-- end meta -->
+
+                                        </div><!-- end blog-box -->
+
+                                        <hr class="invis">
+
+                                    </div><!-- end videos -->
+                                </div><!-- end widget -->
+
+                                <div class="widget">
+                                    <h2 class="widget-title">Popular News</h2>
+                                    <div class="blog-list-widget" th:each="popularNews : ${popularNews}">
+                                        <div class="list-group">
+                                            <a th:href="'/news/detail/'+${popularNews.id}" class="list-group-item list-group-item-action flex-column align-items-start">
+                                                <div class="w-100 justify-content-between">
+                                                    <img th:src="${popularNews.photoUrl}" alt="" class="img-fluid float-left">
+                                                    <h5 th:text="${popularNews.title}" class="mb-1">5 Beautiful buildings you need..</h5>
+                                                    <small th:text="${popularNews.author.author}"></small>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div><!-- end blog-list -->
+                                </div><!-- end widget -->
+
+
+                                <div class="widget">
+                                    <div class="banner-spot clearfix">
+                                        <div class="banner-img">
+                                            <img src="/images/site-creator.webp" alt="Site Creator" class="img-fluid" width="1200" height="1200">
+                                        </div><!-- end banner-img -->
+                                    </div><!-- end banner -->
+                                </div><!-- end widget -->
+                            </div><!-- end sidebar -->
+                        </div><!-- end col -->
+                </div><!-- end row -->
+            </div><!-- end container -->
+        </section>
+    </section>
+</body>
+</html>

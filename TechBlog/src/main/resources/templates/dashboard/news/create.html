@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{dashboard/layout}"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<section layout:fragment="admin-layout">
+
+    <form class="container" method="post" th:object="${newsCreateDto}">
+        <div class="form-group">
+            <div class="form-floating mb-3">
+                <input th:field="*{title}" class="form-control" id="title" type="text" placeholder="Enter title" data-sb-validations="required" />
+                <div th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="text text-danger">A title is required.</div>
+            </div>
+
+            <div class="form-floating mb-3">
+                <!-- Sadə input elementi -->
+                <input th:field="*{editor1}" class="form-control" id="editor1" type="text" placeholder="Enter short description" data-sb-validations="required" />
+                <div th:if="${#fields.hasErrors('editor1')}" th:errors="*{editor1}" class="text text-danger">A short description is required.</div>
+            </div>
+
+            <div class="form-floating mb-3">
+                <!-- CKEditor üçün <textarea> -->
+                <textarea th:field="*{editor2}" class="form-control" id="editor2" placeholder="Enter description" data-sb-validations="required"></textarea>
+                <div th:if="${#fields.hasErrors('editor2')}" th:errors="*{editor2}" class="text text-danger">A description is required.</div>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input th:field="*{photoUrl}" class="form-control" type="text" placeholder="Enter photo" data-sb-validations="required" />
+                <div th:if="${#fields.hasErrors('photoUrl')}" th:errors="*{photoUrl}" class="text text-danger">A photo is required.</div>
+            </div>
+
+            <div class="form-group">
+                <select th:field="*{category.id}" class="form-control">
+                    <option th:each="category : ${categories}" th:text="${category.name}" th:value="${category.id}"></option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <select th:field="*{author.id}" class="form-control">
+                    <option th:each="author : ${authors}" th:text="${author.author}" th:value="${author.id}"></option>
+                </select>
+            </div>
+
+
+            <div class="form-floating mb-3">
+                <input th:field="*{views}" class="form-control" type="text" placeholder="It is not work, so enter the randomly views" data-sb-validations="required" />
+                <div th:if="${#fields.hasErrors('views')}" th:errors="*{views}" class="text text-danger">A views is required.</div>
+            </div>
+
+            <input type="submit" class="btn btn-success my-3" value="Create">
+        </div>
+    </form>
+
+<script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace( 'editor1' );
+    CKEDITOR.replace('editor2');
+
+</script>
+
+</section>
+
+</body>
+</html>

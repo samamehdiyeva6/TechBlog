@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{dashboard/layout}"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<section layout:fragment="admin-layout">
+    <div class="container">
+        <h1>Contacts</h1>
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Number</th>
+                <th scope="col">Subject</th>
+                <th scope="col">Message</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="contact : ${contacts}">
+                <th th:text="${contact.id}" scope="row">1</th>
+                <td th:text="${contact.name}">Mark</td>
+                <td th:text="${contact.email}">Mark</td>
+                <td th:text="${contact.number}">Mark</td>
+                <td th:text="${contact.subject}">Mark</td>
+                <td th:text="${contact.message}">Mark</td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}"
+>
+<head>
+<!-- Basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Site Metas -->
+    <title>Tech Blog - Stylish Magazine Blog Template</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+</head>
+<body >
+<section layout:fragment="layout">
+        <!-- end market-header -->
+
+        <div class="page-title lb single-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                        <h2><i class="fa fa-envelope-open-o bg-orange"></i> Contact us <small class="hidden-xs-down hidden-sm-down"></small></h2>
+                    </div><!-- end col -->
+                </div><!-- end row -->
+            </div><!-- end container -->
+        </div><!-- end page-title -->
+
+        <section class="section wb">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="page-wrapper">
+                            <div class="row">
+                                <div class="col-lg-5">
+                                    <h4>Who we are</h4>
+                                    <p>Tech Blog is a personal blog for handcrafted, cameramade photography content, fashion styles from independent creatives around the world.</p>
+
+                                    <h4>How we help?</h4>
+                                    <p>Stay ahead in the tech world with our insightful articles, expert reviews, and the latest news. From gadgets to groundbreaking innovations, we bridge the gap between technology and you, making it simple to stay informed and inspired. </p>
+
+                                    <h4>Pre-Sale Question</h4>
+                                    <p>Curious about the latest gadgets or tech solutions? Ask us anything before you make a decision! Our in-depth reviews and expert guidance are here to help you choose the best tech for your needs.</p>
+                                </div>
+                                <div class="col-lg-7">
+                                    <form method="post" th:object="${contactSendDto}" id="contactForm">
+                                        <div class="form-floating mb-3">
+                                            <input th:field="*{name}" class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
+                                            <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text text-danger">A name is required.</div>
+                                        </div>
+
+                                        <div class="form-floating mb-3">
+                                            <input th:field="*{email}" class="form-control" id="email" type="text" placeholder="Enter your email..." data-sb-validations="required,email" />
+                                            <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text text-danger">An email is not valid.</div>
+                                        </div>
+
+                                        <div class="form-floating mb-3">
+                                            <input th:field="*{number}" class="form-control" id="phone" type="tel" placeholder="Enter your phone number..." data-sb-validations="required" />
+                                            <div th:if="${#fields.hasErrors('number')}" th:errors="*{number}" class="text text-danger">A phone number is required.</div>
+                                        </div>
+
+                                        <div class="form-floating mb-3">
+                                            <input th:field="*{subject}" class="form-control" id="subject" type="text" placeholder="Enter your subject..." data-sb-validations="required" />
+                                            <div th:if="${#fields.hasErrors('subject')}" th:errors="*{subject}" class="text text-danger">A subject is required.</div>
+                                        </div>
+
+                                        <div class="form-floating mb-3">
+                                            <textarea th:field="*{message}" class="form-control" id="message" placeholder="Enter your message here..." style="height: 12rem" data-sb-validations="required"></textarea>
+                                            <div th:if="${#fields.hasErrors('message')}" th:errors="*{message}" class="text text-danger">A message is required.</div>
+                                        </div>
+
+                                        <div th:class="${success} ? '' : 'd-none'" id="submitSuccessMessage">
+                                            <div class="text-center mb-3">
+                                                <div class="fw-bolder text-success">Form submission successful!</div>
+                                            </div>
+                                        </div>
+
+                                        <button class="btn btn-primary text-uppercase" id="submitButton" type="submit">Send</button>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div><!-- end page-wrapper -->
+                    </div><!-- end col -->
+                </div><!-- end row -->
+            </div><!-- end container -->
+        </section>
+
+</section>
+<!-- end wrapper -->
+</body>
+</html>

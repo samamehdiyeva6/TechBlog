@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{profile/layout}"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<section layout:fragment="profile-layout">
+    <div class="container">
+        <h1>Categories</h1>
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="category : ${categories}">
+                <th th:text="${category.id}" scope="row">1</th>
+                <td th:text="${category.name}">Mark</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Button trigger modal -->
+
+</section>
+
+</body>
+</html>

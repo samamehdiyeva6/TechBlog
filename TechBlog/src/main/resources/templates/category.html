@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}"
+>
+<head>
+    <!-- Basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Site Metas -->
+    <title>Tech Blog - Stylish Magazine Blog Template</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+</head>
+<body >
+<section layout:fragment="layout">
+    <div class="page-title lb single-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12" >
+                    <h2 th:text="${categoryDetails.name}"><i class="fa fa-gears bg-orange"></i></h2>
+                </div><!-- end col -->
+
+            </div><!-- end row -->
+        </div><!-- end container -->
+    </div><!-- end page-title -->
+
+    <section class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                    <div class="page-wrapper">
+                        <div class="blog-grid-system">
+                            <div class="row g-3"> <!-- g-3 boşluq üçün əlavə edildi -->
+                                <div class="col-md-12">
+                                    <div class="row blog-box mb-4" th:each="categoryNews: ${categoryNews}"> <!-- mb-4 aralıq üçün əlavə edildi -->
+                                        <!-- Şəkil Hissəsi -->
+                                        <div class="col-md-4">
+                                            <div class="post-media">
+                                                <a th:href="'/news/detail/'+${categoryNews.id}" title="">
+                                                    <img th:src="${categoryNews.photoUrl}" alt="" class="img-fluid">
+                                                    <div class="hovereffect">
+                                                        <span></span>
+                                                    </div><!-- end hover -->
+                                                </a>
+                                            </div><!-- end media -->
+                                        </div><!-- end col -->
+
+                                        <!-- Mətn Hissəsi -->
+                                        <div class="col-md-8">
+                                            <div class="blog-meta big-meta">
+                                                <h4>
+                                                    <a th:href="'/news/detail/'+${categoryNews.id}" th:text="${categoryNews.title}" title="">
+                                                        We visited the ancient theater in Macedonia
+                                                    </a>
+                                                </h4>
+                                                <p th:text="${categoryNews.editor1}">
+                                                    Aenean interdum arcu blandit, vehicula magna non, placerat elit. Mauris et pharetratortor. Suspendissea sodales urna. In at augue elit. Vivamus enim nibh.
+                                                </p>
+                                                <small class="firstsmall"><a class="bg-orange" th:text="${categoryNews.category.name}">Category</a></small>
+
+                                                <small>
+                                                    <a th:href="'/news/author/detail/'+${categoryNews.author.id}" th:text="${categoryNews.author.author}" title="">by Jack</a>
+                                                </small>
+                                                <small th:text="${categoryNews.views}">
+                                                    <i class="fa fa-eye"></i> 2887
+                                                </small>
+                                            </div><!-- end meta -->
+                                        </div><!-- end col -->
+                                    </div><!-- end row -->
+                                </div><!-- end col -->
+                            </div><!-- end row -->
+                        </div><!-- end blog-grid-system -->
+                    </div><!-- end page-wrapper -->
+
+                    <hr class="invis3">
+
+
+                </div><!-- end col -->
+
+
+
+                <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+                    <div class="sidebar">
+                        <div class="widget">
+                            <h2 class="widget-title">Follow Us</h2>
+
+                            <div class="row text-center">
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                    <a href="#" class="social-button facebook-button">
+                                        <i class="fa fa-facebook"></i>
+                                        <p>27k</p>
+                                    </a>
+                                </div>
+
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                    <a href="#" class="social-button twitter-button">
+                                        <i class="fa fa-twitter"></i>
+                                        <p>98k</p>
+                                    </a>
+                                </div>
+
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                    <a href="#" class="social-button google-button">
+                                        <i class="fa fa-google-plus"></i>
+                                        <p>17k</p>
+                                    </a>
+                                </div>
+
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                    <a href="#" class="social-button youtube-button">
+                                        <i class="fa fa-youtube"></i>
+                                        <p>22k</p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div><!-- end widget -->
+
+                        <div class="widget">
+                            <div class="banner-spot clearfix">
+                                <div class="banner-img">
+                                    <img src="/images/adv.jpg" alt="" class="img-fluid" style="width: 300px; height: 600px; object-fit: cover;">
+                                </div><!-- end banner-img -->
+                            </div><!-- end banner -->
+                        </div><!-- end widget -->
+
+                        <div class="widget">
+                            <h2 class="widget-title">Trend Videos</h2>
+                            <div class="trend-videos">
+                                <div class="blog-box" th:each="trendVideo : ${trendVideos}">
+                                    <div class="post-media">
+                                        <a th:href="${trendVideo.videoUrl}" title="">
+                                            <video th:src="${trendVideo.videoUrl}" alt="" class="img-fluid"></video>
+                                            <div class="hovereffect">
+                                                <span class="videohover"></span>
+                                            </div><!-- end hover -->
+                                        </a>
+                                    </div><!-- end media -->
+                                    <div class="blog-meta" style="text-align: center;">
+                                        <h4 style="margin: 0;">
+                                            <a th:href="'/videos/detail/'+${trendVideo.id}" th:text="${trendVideo.title}" title="">We prepared the best 10 laptop presentations for you</a>
+                                        </h4>
+                                        <div style="text-align: center;">
+                                            <small>
+                                                <a th:href="'/videos/author/detail/'+${trendVideo.author.id}" th:text="${trendVideo.author.author}"></a>
+                                            </small>
+                                            <small th:text="${trendVideo.views}"></small>
+                                        </div>
+                                    </div><!-- end meta -->
+
+                                </div><!-- end blog-box -->
+
+                                <hr class="invis">
+
+                            </div><!-- end videos -->
+                        </div><!-- end widget -->
+
+                        <div class="widget">
+                            <h2 class="widget-title">Popular News</h2>
+                            <div class="blog-list-widget" th:each="popularNews : ${popularNews}">
+                                <div class="list-group">
+                                    <a th:href="'/news/detail/'+${popularNews.id}" class="list-group-item list-group-item-action flex-column align-items-start">
+                                        <div class="w-100 justify-content-between">
+                                            <img th:src="${popularNews.photoUrl}" alt="" class="img-fluid float-left">
+                                            <h5 th:text="${popularNews.title}" class="mb-1">5 Beautiful buildings you need..</h5>
+                                            <small th:text="${popularNews.author.author}"></small>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div><!-- end blog-list -->
+                        </div><!-- end widget -->
+
+
+                        <div class="widget">
+                            <div class="banner-spot clearfix">
+                                <div class="banner-img">
+                                    <img src="/images/site-creator.webp" alt="Site Creator" class="img-fluid" width="1200" height="1200">
+                                </div><!-- end banner-img -->
+                            </div><!-- end banner -->
+                        </div><!-- end widget -->
+                    </div><!-- end sidebar -->
+                </div><!-- end col -->
+            </div><!-- end row -->
+        </div><!-- end container -->
+    </section>
+</section>
+<!-- end wrapper -->
+</body>
+</html>
